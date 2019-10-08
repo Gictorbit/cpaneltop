@@ -71,8 +71,70 @@ class CpanelHost:
     def getResource(self):
         return self.__resourceUsage
     
-    def __byteToMebi(self,byteValu):
-        return byteValu/pow(1024,2)
+    def __searchOnData(self,id:str):
+
+        for resourceInfo in self.__resourceUsage['data']:
+            if resourceInfo['id'] == id:
+                return resourceInfo
+
+        return {""}
+
+
+    def diskUsage(self):
+        return self._searchOnData(id='disk_usage')
     
+    def mySqlDiskUsage(self):
+        return self._searchOnData(id='cachedmysqldiskusage')
+    
+    def bandWidth(self):
+        return self._searchOnData(id='bandwidth')
+    
+    def addonDomain(self):
+        return self._searchOnData(id='addon_domains')
+    
+    def subDomains(self):
+        return self.__searchOnData(id='subdomains')
+    
+    def aliases(self):
+        return self.__searchOnData(id='aliases')
+
+    def emailAccount(self):
+        return self.__searchOnData(id='email_accounts')
+    
+    def autoresponders(self):
+        return self.__searchOnData(id='autoresponders')
+    
+    def forwarders(self):
+        return self.__searchOnData(id='forwarders')
+    
+    def emailFilters(self):
+        return self.__searchOnData(id='email_filters')
+    
+    def ftpAccounts(self):
+        return self.__searchOnData(id='ftp_accounts')
+    
+    def mySqlDatabases(self):
+        return self.__searchOnData(id='mysql_databases')
+    
+    def cpuUsage(self):
+        return self.__searchOnData(id='lvecpu')
+    
+    def entryProcesses(self):
+        return self.__searchOnData(id='lveep')
+    
+    def physicalMemoryUsage(self):
+        return self.__searchOnData(id='lvememphy')
+    
+    def IOPS(self):
+        return self.__searchOnData(id='lveiops')
+
+    def ioUsage(self):
+        return self.__searchOnData(id='lveio')
+    
+    def numberOfProcesses(self):
+        return self.__searchOnData(id='lvenproc')
+    
+
+
 
 
