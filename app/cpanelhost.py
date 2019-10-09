@@ -63,7 +63,6 @@ class CpanelHost:
                 resourceResponce = session.post(resourceUsageURL,data=self.__data,auth=HTTPBasicAuth(self.__username,self.__password))
                 usage = json.loads(resourceResponce.content)
                 self.__resourceUsage = usage
-                # print(json.dumps(self.__resourceUsage['data'][0],indent=4))
                 if(once==True):
                     break
                 sleep(time)
@@ -77,7 +76,7 @@ class CpanelHost:
             if resourceInfo['id'] == id:
                 return resourceInfo
 
-        return {""}
+        return None
 
 
     def diskUsage(self):
