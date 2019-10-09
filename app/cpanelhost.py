@@ -67,8 +67,11 @@ class CpanelHost:
                     break
                 sleep(time)
     
-    def getResource(self):
-        return self.__resourceUsage
+    def getResource(self,justData=True):
+        if justData:
+            return self.__resourceUsage['data']
+        else:
+            return self.__resourceUsage
     
     def __searchOnData(self,id:str):
 
@@ -80,16 +83,16 @@ class CpanelHost:
 
 
     def diskUsage(self):
-        return self._searchOnData(id='disk_usage')
+        return self.__searchOnData(id='disk_usage')
     
     def mySqlDiskUsage(self):
-        return self._searchOnData(id='cachedmysqldiskusage')
+        return self.__searchOnData(id='cachedmysqldiskusage')
     
     def bandWidth(self):
-        return self._searchOnData(id='bandwidth')
+        return self.__searchOnData(id='bandwidth')
     
     def addonDomain(self):
-        return self._searchOnData(id='addon_domains')
+        return self.__searchOnData(id='addon_domains')
     
     def subDomains(self):
         return self.__searchOnData(id='subdomains')
