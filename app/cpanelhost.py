@@ -3,6 +3,7 @@ from requests.auth import HTTPBasicAuth
 import json
 from time import sleep
 
+
 class CpanelHost:
 
     def __init__(self,username:str,domain:str,password:str,port='2082'):
@@ -63,14 +64,16 @@ class CpanelHost:
                 resourceResponce = session.post(resourceUsageURL,data=self.__data,auth=HTTPBasicAuth(self.__username,self.__password))
                 usage = json.loads(resourceResponce.content)
                 self.__resourceUsage = usage
-                if(once==True):
+                if(once == True):
                     break
                 sleep(time)
     
     def getResource(self,justData=True):
         if justData:
+            #return a list of resource
             return self.__resourceUsage['data']
         else:
+            #return whole content of host responce
             return self.__resourceUsage
     
     def __searchOnData(self,id:str):
