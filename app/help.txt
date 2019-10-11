@@ -1,0 +1,60 @@
+==============================
+	    Description
+==============================
+cpanel top is a python script that could connect to your cpanel host and fetch cpanel statistics to show you the information of cpanel on command line with  status refresh ability
+
+===============================
+	    user@domain 
+===============================
+for connect to your cpanel host you should enter your username and domain or ip address as parameter with following format:
+
+"username@domain" 
+	example : 
+		admin@example.com
+		admin@127.0.0.1
+
+And then you can use defined arguments or default settings.
+===============================
+	--port      -p
+===============================
+By default the script uses  the specified cpanel port "2082"
+you can change it with "-p" or "--port" arguments 
+for example:
+cpaneltop.py  admin@example.com -p 1234   or
+cpaneltop.py  admin@example.com --port 1234
+================================
+	--time      -t
+================================
+Another parameter you can use is "-t" or "--time"
+By default, this program refreshes your cpanel host information every 10 seconds.
+If you do not want to do this, you can set the time argument to "1"
+whith Doing this work will no longer update the information and only show status once. for example:
+
+cpaneltop.py -t 1 admin@example.com -p 1234
+
+or you can customize update time  with numeric values between 5 untill 60 second. for example:
+
+cpaneltop.py -t 25 admin@example.com 
+===================================
+	        password
+===================================
+after using above parameters you can hit enter key and enter your password in secure mode
+===================================
+	        USAGE
+===================================
+#~ cpaneltop.py user@domain
+
+#~ cpaneltop.py user@domain --port 1234
+
+#~ cpaneltop.py user@domain --time 5 --port 2280
+
+===================================
+	        LICENSE
+===================================
+cpaneltop is licensed under the
+GNU General Public License v3.0
+====================================
+for more information and report issues check below link 
+https://github.com/Gictorbit/cpaneltop 
+
+hope be useful and  enjoy it
