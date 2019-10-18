@@ -6,7 +6,7 @@ from time import sleep
 
 class CpanelHost:
 
-    def __init__(self,username:str,domain:str,password:str,port='2082'):
+    def __init__(self,username:str,domain:str,password:str,period=10,port='2082'):
         self.__username=username
         self.__domain = domain
         self.__password = password
@@ -16,10 +16,17 @@ class CpanelHost:
             'user': username,
             'pass' : password
         }
-        self.__resourceUsage = {}
+        self.__resourceUsage = {'data':[]}
+        self.__requestNumber=0
+        self.period = period
 
-    def __makeURL(self):
-        return 'http://'+self.__domain+':'+self.__port
+    def __makeURL(self,https=False):
+        url=''
+        if https == False:
+            url='http://'+self.__domain+':'+self.__port
+        else:
+            url ='https://'+self.__domain+':'+self.__port
+        return url 
 
     def getUserName(self):
         return self.__username
@@ -55,22 +62,26 @@ class CpanelHost:
 
         return securityToken
 
-    def checkStatus(self,time =10):
+    def checkStatus(self):
         with requests.session() as session:
 
             resourceUsageURL = self.__url+self.__getToken()+'/execute/ResourceUsage/get_usages'
-
-            while(True):
+            
+            resCode =200
+            while(resCode==200):
                 resourceResponce = session.post(resourceUsageURL,data=self.__data,auth=HTTPBasicAuth(self.__username,self.__password))
                 usage = json.loads(resourceResponce.content)
                 self.__resourceUsage = usage
-                if(time == 1):
+                resCode=resourceResponce.status_code
+                self.__requestNumber+=1
+                if(self.period == 1):
                     break
-                sleep(time)
+                sleep(self.period)
+        return resCode
 
     def getResource(self,justData=True):
         if justData:
-            #return a list of resource
+            #return a list of resource each reasource is a dictionary
             return self.__resourceUsage['data']
         else:
             #return whole content of host responce
@@ -139,6 +150,8 @@ class CpanelHost:
     def numberOfProcesses(self):
         return self.__searchOnData(id='lvenproc')
 
+    def getRequestNumber(self):
+        return self.__requestNumber
 
 
 
