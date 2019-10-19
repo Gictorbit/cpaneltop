@@ -6,23 +6,25 @@ from time import sleep
 
 class CpanelHost:
 
-    def __init__(self,username:str,domain:str,password:str,period=10,port='2082'):
+    def __init__(self,username:str,domain:str,password:str,period=10,port='2082',ssl='no'):
         self.__username=username
         self.__domain = domain
         self.__password = password
         self.__port = port
+        self.__ssl =ssl
         self.__url = self.__makeURL()
         self.__data = {
             'user': username,
             'pass' : password
         }
-        self.__resourceUsage = {'data':[]}
+        self.__resourceUsage = {}
         self.__requestNumber=0
         self.period = period
+        
 
-    def __makeURL(self,https=False):
+    def __makeURL(self):
         url=''
-        if https == False:
+        if self.__ssl == 'no':
             url='http://'+self.__domain+':'+self.__port
         else:
             url ='https://'+self.__domain+':'+self.__port
@@ -45,6 +47,9 @@ class CpanelHost:
     
     def getData(self):
         return self.__data
+
+    def getSSL(self):
+        return self.__ssl
 
     def __getToken(self):
 
