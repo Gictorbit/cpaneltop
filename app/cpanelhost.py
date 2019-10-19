@@ -27,8 +27,8 @@ class CpanelHost:
         if self.__ssl == 'no':
             url='http://'+self.__domain+':'+self.__port
         else:
-            url ='https://'+self.__domain+':'+self.__port
-        return url 
+            url='https://'+self.__domain+':'+self.__port
+        return url
 
     def getUserName(self):
         return self.__username
@@ -56,7 +56,7 @@ class CpanelHost:
         with requests.session() as session :
             firstURL = self.__url+'/login/?login_only=1'
             response = session.post(
-                firstURL, 
+                firstURL,
                 data = self.__data,
                 auth = HTTPBasicAuth(self.__username,self.__password),
                 allow_redirects = False,
@@ -71,7 +71,7 @@ class CpanelHost:
         with requests.session() as session:
 
             resourceUsageURL = self.__url+self.__getToken()+'/execute/ResourceUsage/get_usages'
-            
+
             resCode =200
             while(resCode==200):
                 resourceResponce = session.post(resourceUsageURL,data=self.__data,auth=HTTPBasicAuth(self.__username,self.__password))
@@ -92,68 +92,68 @@ class CpanelHost:
             #return whole content of host responce
             return self.__resourceUsage
 
-    def __searchOnData(self,id:str):
+    def __searchOnData(self,keyId):
 
         for resourceInfo in self.__resourceUsage['data']:
-            if resourceInfo['id'] == id:
+            if resourceInfo['id'] == keyId:
                 return resourceInfo
 
         return None
 
 
     def diskUsage(self):
-        return self.__searchOnData(id='disk_usage')
+        return self.__searchOnData(keyId='disk_usage')
 
     def mySqlDiskUsage(self):
-        return self.__searchOnData(id='cachedmysqldiskusage')
+        return self.__searchOnData(keyId='cachedmysqldiskusage')
 
     def bandWidth(self):
-        return self.__searchOnData(id='bandwidth')
+        return self.__searchOnData(keyId='bandwidth')
 
     def addonDomain(self):
-        return self.__searchOnData(id='addon_domains')
+        return self.__searchOnData(keyId='addon_domains')
 
     def subDomains(self):
-        return self.__searchOnData(id='subdomains')
+        return self.__searchOnData(keyId='subdomains')
 
     def aliases(self):
-        return self.__searchOnData(id='aliases')
+        return self.__searchOnData(keyId='aliases')
 
     def emailAccount(self):
-        return self.__searchOnData(id='email_accounts')
+        return self.__searchOnData(keyId='email_accounts')
 
     def autoresponders(self):
-        return self.__searchOnData(id='autoresponders')
+        return self.__searchOnData(keyId='autoresponders')
 
     def forwarders(self):
-        return self.__searchOnData(id='forwarders')
+        return self.__searchOnData(keyId='forwarders')
 
     def emailFilters(self):
-        return self.__searchOnData(id='email_filters')
+        return self.__searchOnData(keyId='email_filters')
 
     def ftpAccounts(self):
-        return self.__searchOnData(id='ftp_accounts')
+        return self.__searchOnData(keyId='ftp_accounts')
 
     def mySqlDatabases(self):
-        return self.__searchOnData(id='mysql_databases')
+        return self.__searchOnData(keyId='mysql_databases')
 
     def cpuUsage(self):
-        return self.__searchOnData(id='lvecpu')
+        return self.__searchOnData(keyId='lvecpu')
 
     def entryProcesses(self):
-        return self.__searchOnData(id='lveep')
+        return self.__searchOnData(keyId='lveep')
 
     def physicalMemoryUsage(self):
-        return self.__searchOnData(id='lvememphy')
+        return self.__searchOnData(keyId='lvememphy')
 
     def IOPS(self):
-        return self.__searchOnData(id='lveiops')
+        return self.__searchOnData(keyId='lveiops')
 
     def ioUsage(self):
-        return self.__searchOnData(id='lveio')
+        return self.__searchOnData(keyId='lveio')
 
     def numberOfProcesses(self):
-        return self.__searchOnData(id='lvenproc')
+        return self.__searchOnData(keyId='lvenproc')
 
     def getRequestNumber(self):
         return self.__requestNumber
