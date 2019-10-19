@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from beautifultable import BeautifulTable
 from cpanelhost import CpanelHost
 from threading import Thread
