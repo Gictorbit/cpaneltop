@@ -1,0 +1,3 @@
+beautifultable==0.8.0
+requests==2.22.0
+validators==0.14.0
