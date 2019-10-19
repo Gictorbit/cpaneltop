@@ -53,16 +53,17 @@ def main():
 
     """
     userInput is like this:
-    {'user@host': 'asd@sad.com',
-     'port': 0, #alwayze str
-     'time': 1, #alwayze integer
-     'help': 0, 
-     'user': 'username', 
-     'host': 'domain',
-     'password' : 'getpass' //initial in main and add to perv dictionary
-     }
+    {
+        'user@host': 'asd@sad.com',
+        'port': 0, #alwayze str
+        'time': 1, #alwayze integer
+        'help': 0,
+        'user': 'username',
+        'host': 'domain',
+        'password' : 'getpass' //initial in main and add to perv dictionary
+    }
     """
-    
+
     #if user didnt use to time argument we set default period to 10 second
     if userInput['time']==0:
         userInput['time']+=10
@@ -88,17 +89,17 @@ def main():
     
     if 'data' not in host1.getResource(justData=False):
         raise CantConnect("cant connect and fetch resource usage Information")
-    
+
 
     host1.period = primaryTime
     checkStatusOnlineThread = Thread(target=host1.checkStatus,args=(),daemon=True)
     checkStatusOnlineThread.start()
-    
+
     def __windowShow(topWindow):
-        
+
         curses.curs_set(0)
         h,w = topWindow.getmaxyx()
-        
+
         if h<24 or w<78:
             topWindow.addstr(0,0,'console size is not enough must be greater than 24*78')
             topWindow.getch()
@@ -154,7 +155,7 @@ def getInfoBox(resource:dict):
     def __hasHumanRead(resource:dict):
         hasSizeListId = ["disk_usage","cachedmysqldiskusage",\
             "bandwidth","lvememphy","lveio"]
-        
+
         if resource['id'] in hasSizeListId:
             return True
         else:
@@ -176,8 +177,8 @@ def getInfoBox(resource:dict):
 
     return finalString
 
-def humanReadableSize(byteSize:float): 
-    
+def humanReadableSize(byteSize:float):
+
     def __sizeFormat(size,listIndex:int):
         if not size:
             return '0'
@@ -193,13 +194,13 @@ def humanReadableSize(byteSize:float):
     while finalSize >= 1024.00 and listIndex<len(sizeList):
         finalSize/=1024.0
         listIndex+=1
-    
+
     endSize = __sizeFormat(finalSize,listIndex)
     suffixSize = sizeList[listIndex]
-    
+
     if float(endSize)- int(float(endSize)) == 0.0:
         endSize = str(int(float(endSize)))
-    
+
     return endSize+' '+suffixSize
 
 def getStatusBar(percent:int,barSize=10):
@@ -253,27 +254,27 @@ def checkArg():
         while index < len(sys.argv):
             if '@'  in sys.argv[index]:
                 #fetch user@host argument
-                resultInit['user@host'] = sys.argv[index]  
+                resultInit['user@host'] = sys.argv[index]
             elif  argumentList[0] == sys.argv[index] or argumentList[1] == sys.argv[index] :
-                #fetch -h and --help argument 
+                #fetch -h and --help argument
                 resultInit['help']=1
                 break
             elif argumentList[2] == sys.argv[index] or argumentList[3] == sys.argv[index] :
                 #fetch -p --port argument
-                if index+1 < len(sys.argv) : 
+                if index+1 < len(sys.argv) :
                     resultInit['port'] = sys.argv[index+1]
                     index+=1
                 else:
                     resultInit['port']=-1
             elif argumentList[4] == sys.argv[index] or  argumentList[5] == sys.argv[index]:
-                #fetch -t --time argument 
-                if index+1 < len(sys.argv) : 
+                #fetch -t --time argument
+                if index+1 < len(sys.argv) :
                     resultInit['time'] = sys.argv[index+1]
                     index+=1
                 else:
                     resultInit['time']=-1
             elif argumentList[6] == sys.argv[index] or argumentList[7] == sys.argv[index]:
-                if index+1 < len(sys.argv) : 
+                if index+1 < len(sys.argv) :
                     resultInit['ssl'] = sys.argv[index+1]
                     index+=1
                 else:
@@ -307,7 +308,6 @@ def checkArg():
     elif str(result['time']).isnumeric():
         if int(result['time'])==1 or (int(result['time'])>=5 and int(result['time'])<=60) or int(result['time'])==0 :
             result['time'] = int(result['time'])
-            pass
         else:
             raise UnknownParameter("the time parameter is invalid shoud be in 5-60 second or 1")
     else:
@@ -319,10 +319,9 @@ def checkArg():
         raise UnknownParameter("cant find port parameter")
     elif pattern.match(str(result['port'])) or result['port'] == 0:
         result['port']=str(result['port'])
-        pass
     else:
         raise UnknownParameter("bad port for connection")
-    
+
     #check ssl enable
     if result['ssl'] == -1:
         raise UnknownParameter("cant find ssl parameter ")
@@ -331,7 +330,7 @@ def checkArg():
     else:
         raise UnknownParameter("bad ssl answer, should be yes or no")
 
-    return result 
+    return result
 
 def printHelp():
     with open("help.txt",'r') as helpText:

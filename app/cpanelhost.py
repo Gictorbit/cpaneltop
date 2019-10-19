@@ -20,7 +20,7 @@ class CpanelHost:
         self.__resourceUsage = {}
         self.__requestNumber=0
         self.period = period
-        
+
 
     def __makeURL(self):
         url=''
@@ -44,7 +44,7 @@ class CpanelHost:
 
     def getURL(self):
         return self.__url
-    
+
     def getData(self):
         return self.__data
 
