@@ -86,7 +86,7 @@ def main():
     checkStatusOnlineThreadOnce = Thread(target=host1.checkStatus,args=(),daemon=True)
     checkStatusOnlineThreadOnce.start()
     checkStatusOnlineThreadOnce.join()
-    
+
     if 'data' not in host1.getResource(justData=False):
         raise CantConnect("cant connect and fetch resource usage Information")
 
