@@ -1,16 +1,11 @@
 from beautifultable import BeautifulTable
-from requests.auth import HTTPBasicAuth
 from cpanelhost import CpanelHost
 from threading import Thread
 from getpass import getpass
 from curses import textpad
 import validators
-import requests
 import curses
-import json
-import time
 import sys
-import os
 import re
 
 
