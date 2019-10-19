@@ -3,6 +3,16 @@
 ==============================
 cpanel top is a python script that could connect to your cpanel host and fetch cpanel statistics to show you the information of cpanel on command line with  status refresh ability
 
+===================================
+	        USAGE
+===================================
+#~ cpaneltop.py user@domain
+
+#~ cpaneltop.py user@domain --port 1234
+
+#~ cpaneltop.py user@domain --time 5 --port 2280
+
+#~ for exit press q button
 ===============================
 	    user@domain 
 ===============================
@@ -36,17 +46,16 @@ or you can customize update time  with numeric values between 5 untill 60 second
 
 cpaneltop.py -t 25 admin@example.com 
 ===================================
+	--ssl		-s
+===================================
+most users have http connection on cpanel login page ,so cpaneltop uses to http by default. 
+if you have https connection you should use -s or --ssl parameter and pass 'yes' or 'no' arguments to that.
+for example:
+cpaneltop.py admin@example.com --ssl yes
+===================================
 	        password
 ===================================
 after using above parameters you can hit enter key and enter your password in secure mode
-===================================
-	        USAGE
-===================================
-#~ cpaneltop.py user@domain
-
-#~ cpaneltop.py user@domain --port 1234
-
-#~ cpaneltop.py user@domain --time 5 --port 2280
 
 ===================================
 	        LICENSE
@@ -54,7 +63,7 @@ after using above parameters you can hit enter key and enter your password in se
 cpaneltop is licensed under the
 GNU General Public License v3.0
 ====================================
-for more information and report issues check below link 
+for more information check following link 
 https://github.com/Gictorbit/cpaneltop 
 
 hope be useful and  enjoy it
