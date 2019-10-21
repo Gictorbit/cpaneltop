@@ -334,10 +334,15 @@ def checkArg():
     return result
 
 def printHelp():
-    with open("help.txt",'r') as helpText:
-        print(helpText.read())
+    helpString = "\n\tusername@host\tConnect to the host with specified username\
+        \n\n\t-h\t--help\tprint this help\
+        \n\t-t\t--time\tchange request time for refresh detail must be\t5 <t< 60\
+        \n\t-p\t--port\tconnect to host with specified port\
+        \n\t-s\t--ssl\trequest to host with https protocol\
+        \n\n  exit from program with pressing q button\
+        \n\n  for more information check https://github.com/Gictorbit/cpaneltop\n"
 
-    helpText.close()
+    print(helpString)
 
 if __name__ == '__main__':
     main()
