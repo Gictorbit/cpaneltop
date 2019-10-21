@@ -1,4 +1,7 @@
-if [ -d "$HOME/.local/share/cpaneltop" ] then;
+#! /usr/bin/bash
+
+if [ -d "$HOME/.local/share/cpaneltop" ]
+then
     rm -rf "$HOME/.local/share/cpaneltop"
 else
     echo "there is no cpaneltop directory in ~/.local/share"
