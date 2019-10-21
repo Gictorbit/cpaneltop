@@ -9,7 +9,7 @@
 
 <br></br>
 
-#  Installation
+# Installation
 
 for using this program ,you can run `cpaneltop.py` that provided in `cpaneltop/app`directory manually<br> or install it using installer in linux machins</br>
 
@@ -22,13 +22,12 @@ git clone "https://github.com/Gictorbit/cpaneltop.git" && cd cpaneltop
 
 and then should install python package reqirements
 
-
 ```bash
 pip install -r requirements.txt
 ```
 >## install with installer script
 >```bash
->chmod +x "install.sh"
+>chmod +x install.sh
 >./install.sh
 >```
 
@@ -50,8 +49,6 @@ in this section , cpaneltop parameters explained:
 <summary>
 username@host
 </summary>
-
-
 
 for connect to your cpanel host you should enter your username and domain or ip address as parameter <br> with following format:</br>
 
@@ -126,9 +123,10 @@ PassWord
 after using above parameters you can hit enter key and enter your password in secure mode
 </details>
 
-----
+---
 
->### Note: for exit from program you shoud press `q` button 
+>### Note:
+>for exit from program you shoud press `q` button 
 
 <br></br>
 
@@ -149,7 +147,6 @@ cpaneltop admin@example.com -p 12345 --time 12
 ```bash
 cpaneltop admin@example.com -p 12345 -t 7 -s yes 
 ```
-
 
 <br></br>
 
