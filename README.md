@@ -2,19 +2,18 @@
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)   [![Codacy Badge](https://api.codacy.com/project/badge/Grade/14055c53f28c4309824e73440c43de8a)](https://www.codacy.com/manual/gictorbit/cpaneltop?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=GictorBit/cpaneltop&amp;utm_campaign=Badge_Grade)    [![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html)  ![GitHub repo size](https://img.shields.io/github/repo-size/Gictorbit/cpaneltop?style=flat)  ![GitHub stars](https://img.shields.io/github/stars/Gictorbit/cpaneltop?style=sad)
 
-## Description
+# CpanelTop
 ### CpanelTop is a Python command line script to monitor the usage of cpanel resources. cpaneltop can login to your host panel and fetch the statistics table and display resource usage in your terminal
 
 ![screenshot](cpanelTopScreenshot.png)
 
 <br></br>
 
-# Installation
+## Installation
 
 for using this program ,you can run `cpaneltop.py` that provided in `cpaneltop/app`directory manually<br> or install it using installer in linux machins</br>
 
 first of all you need to clone the directory :
-
 
 ```bash
 git clone "https://github.com/Gictorbit/cpaneltop.git" && cd cpaneltop
@@ -25,13 +24,13 @@ and then should install python package reqirements
 ```bash
 pip install -r requirements.txt
 ```
->## install with installer script
+>### install with installer script
 >```bash
 >chmod +x install.sh
 >./install.sh
 >```
 
->## run manually
+>### run manually
 >```bash
 >cd app/
 >python3 cpaneltop.py
@@ -39,7 +38,7 @@ pip install -r requirements.txt
 
 <br></br>
 
-# Usage
+## Usage
 
 You can also customize your requests with the parameters defined in the program . <br>
 in this section , cpaneltop parameters explained:
@@ -125,12 +124,12 @@ after using above parameters you can hit enter key and enter your password in se
 
 ---
 
->### Note:
+>### Note
 >for exit from program you shoud press `q` button 
 
 <br></br>
 
-# Example
+## Example
 
 ```bash
 cpaneltop admin@example.com 
@@ -150,7 +149,7 @@ cpaneltop admin@example.com -p 12345 -t 7 -s yes
 
 <br></br>
 
-# License
+## License
 ![GitHub](https://img.shields.io/github/license/gictorbit/cpaneltop?style=for-the-badge)
 
 cpaneltop is licensed under the
