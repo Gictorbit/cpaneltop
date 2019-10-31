@@ -2,7 +2,14 @@ import requests
 from requests.auth import HTTPBasicAuth
 import json
 from time import sleep
+from urllib.request import urlopen
 
+def netIsOn():
+    try:
+        response = urlopen('https://www.google.com/', timeout=10)
+        return True
+    except:
+        return False
 
 class CpanelHost:
 
