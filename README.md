@@ -85,7 +85,7 @@ time (-t , --time)
 the another parameter you can use is `-t` or `--time`</br>
 By default, this program refresh your cpanel host information every 10 seconds.</br>
 If you do'nt want to do this, you can set the time argument to `1`
-whith Doing this , will no longer update the information and only display detail for one request .
+with Doing this , will no longer update the information and only display detail for one request .
 
 ```bash
 cpaneltop username@host --time 1

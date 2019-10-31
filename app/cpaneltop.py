@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from beautifultable import BeautifulTable
 from cpanelhost import CpanelHost
+from cpanelhost import netIsOn
 from threading import Thread
 from getpass import getpass
 from curses import textpad
@@ -51,6 +52,7 @@ def main():
 
     #store user password and add this key/value to userInput Dictionary
     userInput['password'] = getpass("enter your password: ")
+    print("Connecting...")
 
     """
     userInput is like this:
@@ -80,18 +82,26 @@ def main():
         host1 = CpanelHost(username=userInput['user'],domain=userInput['host'],\
             password=userInput['password'],period=userInput['time'],port=userInput['port'],ssl=userInput['ssl'])
 
+    #check internet connection is avaible
+    if netIsOn() == False:
+        print("there is no Internet Connection")
+        sys.exit()
+
     #initialize resource information with 1 requests
     primaryTime=host1.period
     host1.period=1
 
-    checkStatusOnlineThreadOnce = Thread(target=host1.checkStatus,args=(),daemon=True)
-    checkStatusOnlineThreadOnce.start()
-    checkStatusOnlineThreadOnce.join()
+    try:
+        host1.checkStatus()
+        print("OK")
+    except KeyError as tokenError:
+        print("can't connect to Host! :(")
+        sys.exit()
 
     if 'data' not in host1.getResource(justData=False):
         raise CantConnect("cant connect and fetch resource usage Information")
 
-
+    #check resource detail in background every X second with below thread
     host1.period = primaryTime
     checkStatusOnlineThread = Thread(target=host1.checkStatus,args=(),daemon=True)
     checkStatusOnlineThread.start()

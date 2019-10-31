@@ -38,7 +38,7 @@ cpaneltop.py  admin@example.com --port 1234
 Another parameter you can use is "-t" or "--time"
 By default, this program refreshes your cpanel host information every 10 seconds.
 If you do not want to do this, you can set the time argument to "1"
-whith Doing this work will no longer update the information and only show status once. for example:
+with Doing this work will no longer update the information and only show status once. for example:
 
 cpaneltop.py -t 1 admin@example.com -p 1234
 
