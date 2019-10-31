@@ -7,8 +7,9 @@ from urllib.request import urlopen
 def netIsOn():
     try:
         response = urlopen('https://www.google.com/', timeout=10)
-        return True
-    except:
+        if response.status == 200 :
+            return True
+    except Exception:
         return False
 
 class CpanelHost:

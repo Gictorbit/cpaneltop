@@ -94,7 +94,7 @@ def main():
     try:
         host1.checkStatus()
         print("OK")
-    except KeyError as tokenError:
+    except KeyError :
         print("can't connect to Host! :(")
         sys.exit()
 
